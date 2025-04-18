@@ -14,10 +14,11 @@ ps: ## List docker containers
 logs: # Logs: make logs C=payload
 	docker-compose logs -f $(C)
 
-setup: destroy
+setup:
+	cp .env.example .env
+	$(MAKE) destroy up
 	#npm install
-	$(MAKE) up
-	sleep 20 # need some time for payload to build up
+	sleep 20 # Payload needs some time to build.
 	docker ps
 	@echo ""
 	@echo "🔗 http://localhost:3000"
