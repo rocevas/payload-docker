@@ -1,31 +1,46 @@
 version: '3'
 
 services:
-  payload:
-    image: node:18-alpine
-    ports:
-      - '3000:3000'
-    volumes:
-      - .:/home/node/app
-      - node_modules:/home/node/app/node_modules
-    working_dir: /home/node/app/
-    command: sh -c "yarn install && yarn dev"
-    depends_on:
-      - mongo
-    env_file:
-      - .env
+    payload:
+        image: node:18-alpine
+        ports:
+            - '3000:3000'
+        volumes:
+            - .:/home/node/app
+            - node_modules:/home/node/app/node_modules
+        working_dir: /home/node/app/
+        command: sh -c "yarn install && yarn dev"
+        depends_on:
+            - postgres
+        env_file:
+            - .env
 
-  mongo:
-    image: mongo:latest
-    ports:
-      - '27017:27017'
-    command:
-      - --storageEngine=wiredTiger
-    volumes:
-      - data:/data/db
-    logging:
-      driver: none
+    # Ensure your DATABASE_URI uses 'postgresql' as the hostname ie. postgresql://127.0.0.1:5432/your-database-name
+    postgres:
+        restart: always
+        image: postgres:latest
+        volumes:
+            - pgdata:/var/lib/postgresql/data
+        ports:
+            - '${FORWARD_DB_PORT:-5432}:5432'
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_DB: ${DB_DATABASE}
+            POSTGRES_HOST_AUTH_METHOD: trust
+
+    # Uncomment the following to use mongodb
+    # mongo:
+    #   image: mongo:latest
+    #   ports:
+    #     - '27017:27017'
+    #   command:
+    #     - --storageEngine=wiredTiger
+    #   volumes:
+    #     - data:/data/db
+    #   logging:
+    #     driver: none
 
 volumes:
-  data:
-  node_modules:
+    pgdata:
+    # data:
+    node_modules:
