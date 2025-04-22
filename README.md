@@ -16,4 +16,4 @@ This command will build the necessary Docker containers and initialize the envir
 ## Branch management
 
 We follow the MailerFlow branching model — a streamlined version of Git Flow without release branches.
-For more details, please refer to our internal [MailerLite PR rules and flow](https://www.notion.so/mailergroup/MailerFlow-0e736a2839f145478e67ec6102034403).
+For more details, please refer to our internal [MailerLite PR rules and flow](https://www.notion.so/mailergroup/MailerLite-PR-rules-and-flow-cce53c8222b14826b589243be185aae5).
