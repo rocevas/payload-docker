@@ -1,16 +1,13 @@
 up: ## Creates and starts the docker containers
-	docker-compose up -d
+	docker-compose up payload -d
 	$(MAKE) ps
-
-up-build: ## Creates and starts the docker containers
-	docker-compose up -d
 
 down: ## Stops and removes the docker containers
 	docker-compose down
 
 destroy: ## Destroys the environment
 	docker-compose down --rmi all --volumes --remove-orphans
-	#rm -rf node_modules
+	rm -rf node_modules
 
 ps: ## List docker containers
 	docker-compose ps
@@ -22,7 +19,11 @@ logs: # Logs: make logs C=payload
 
 setup:
 	cp .env.example .env
-	$(MAKE) destroy up-build
-	#npm install
+	$(MAKE) destroy
+	docker-compose up payload -d
+    #docker-compose exec payload yarn install
 	sleep 20 # Payload needs some time to build.
 	$(MAKE) ps
+
+update-payload: ## Update Payload CMS
+	docker-compose exec payload yarn upgrade
