@@ -13,6 +13,16 @@ make setup
 ```
 This command will build the necessary Docker containers and initialize the environment.
 
+## Building for Production
+
+Once you have the development environment up and running, you can generate a fully static export of your site:
+
+```
+make build
+```
+
+After the build completes, you’ll find your entire site ready for upload in the ```out/``` directory at the project root.
+
 ## Branch management
 
 We follow the MailerFlow branching model — a streamlined version of Git Flow without release branches.
