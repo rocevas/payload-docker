@@ -25,5 +25,8 @@ setup:
 	sleep 20 # Payload needs some time to build.
 	$(MAKE) ps
 
+build: ## Build static files
+	docker-compose exec payload npm run build:static
+
 update-payload: ## Update Payload CMS
 	docker-compose exec payload yarn upgrade

@@ -3,6 +3,9 @@ import { getPayload } from 'payload'
 import config from '@payload-config'
 import { unstable_cache } from 'next/cache'
 
+export const dynamic = 'force-static'
+export const revalidate = 600
+
 const getPostsSitemap = unstable_cache(
   async () => {
     const payload = await getPayload({ config })

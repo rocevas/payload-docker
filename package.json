@@ -5,6 +5,9 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
+    "prebuild:static": "cross-env NODE_OPTIONS=--no-deprecation node togglePayload.js",
+    "build:static": "cross-env NODE_OPTIONS=--no-deprecation BUILD_MODE=static next build",
+    "postbuild:static": "cross-env NODE_OPTIONS=--no-deprecation node togglePayload.js",
     "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
     "postbuild": "next-sitemap --config next-sitemap.config.cjs",
     "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
@@ -38,6 +41,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "cross-env": "^7.0.3",
+    "fs-extra": "^11.3.0",
     "geist": "^1.3.0",
     "graphql": "^16.8.2",
     "lucide-react": "^0.378.0",
