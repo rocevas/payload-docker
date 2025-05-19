@@ -2,6 +2,7 @@ version: '3'
 
 services:
     payload:
+        restart: always
         image: node:18-alpine
         ports:
             - '3000:3000'
