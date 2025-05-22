@@ -33,14 +33,12 @@ const staticConfig = {
   ...baseConfig,
   output: 'export',
   trailingSlash: true,
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-  rewrites: () => [],
-  redirects: () => [],
+
+  eslint: { ignoreDuringBuilds: true },
+  typescript: { ignoreBuildErrors: true },
+
+  // rewrites: () => [],
+  // redirects: () => [],
 }
 
 const config = process.env.BUILD_MODE === 'static'

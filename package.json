@@ -5,9 +5,9 @@
   "license": "MIT",
   "type": "module",
   "scripts": {
-    "prebuild:static": "cross-env NODE_OPTIONS=--no-deprecation node togglePayload.js",
+    "prebuild:static": "cross-env NODE_OPTIONS=--no-deprecation node togglePayload.js prebuild",
     "build:static": "cross-env NODE_OPTIONS=--no-deprecation BUILD_MODE=static next build",
-    "postbuild:static": "cross-env NODE_OPTIONS=--no-deprecation node togglePayload.js",
+    "postbuild:static": "cross-env NODE_OPTIONS=--no-deprecation node togglePayload.js postbuild",
     "build": "cross-env NODE_OPTIONS=--no-deprecation next build",
     "postbuild": "next-sitemap --config next-sitemap.config.cjs",
     "dev": "cross-env NODE_OPTIONS=--no-deprecation next dev",
